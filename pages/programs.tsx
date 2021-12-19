@@ -1,9 +1,43 @@
+import axios from 'axios'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
+import { IProgram } from '../interface/IProgram'
 import navStyle from '../styles/navStyles.module.css'
 import mainStyle from '../styles/programsStyle.module.css'
-const Home: NextPage = () => {
+const programs: NextPage = () => {
+  const [program, setProgram] = useState<Array<IProgram>>([])
+
+  const restApi = "http://127.0.0.1:8000/api"
+
+  const getProgram = async () => {
+    let program: Array<IProgram> = await fetch(restApi+'/treniruotes_programa').then(r => r.json())
+    setProgram(program)
+  }
+
+  const postProgram = async () => {
+    await
+      axios.post(`${restApi}/treniruotes_programa`, {
+        "darbuotojo_vardas": 'dVardas',
+        "pavadinimas": 'pavadinimas',
+        "dalyviu_skaicius":20,
+        "trukme":90,
+      }).then(function (response) {
+        console.log(response);
+      })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+    window.location.href = 'programs'
+  }
+
+  
+  useEffect(() => {
+    getProgram();
+  }, []);
+
   return (
     <div>
       <Head>
@@ -21,7 +55,7 @@ const Home: NextPage = () => {
 
           <ul>
             <li><a href="/">Pagrindinis</a></li>
-            <li><a href="schedules">Tvarkaraščiai</a></li>
+            <li><a href="Schedule">Tvarkaraščiai</a></li>
             <li><a href="">Treniruočių programos</a></li>
             <li><a href="contact">Kontaktai</a></li>
             <li><a href="register">Registracija</a></li>
@@ -29,32 +63,35 @@ const Home: NextPage = () => {
           </ul>
         </nav>
 
-        <div>
-          <h1>Treniruočių programos</h1>
+        <h1>Treniruočių programos</h1>
 
-          <div>
-              <p>Aerobika</p>
-              <p>bubribiuiuiuebvbviuebviuebrviuebivberivb</p>
-          </div>
-
-          <div>
-              <p>Pilatės treniruotė</p>
-              <p>beribiuvivbieruvberiubviuerbviuebiuberivberivb</p>
-          </div>
-
-          <div>
-              <p>Bokso treniruotė</p>
-              <p>momgnfownoinongoengoerngerngerngonerogner</p>
-          </div>
-
-          <div>
-              <p>Sunkiojo atletika</p>
-              <p>ifiurbgiuiuebierbgierbgiebierbgierbgiuebgeiurgbiu</p>
-          </div>
-        </div>
-
+        <button onClick={postProgram}>
+          Pridėti
+        </button>
+        
+        {program !== undefined? 
+          <table className="table table-bordered">
+           <tr>
+               <th>Nr</th>
+               <th>Darbuotojas</th>
+               <th>Pavadinimas</th>
+               <th>Vietų skaičius</th>
+               <th>Trukmė (min)</th>
+           </tr>
+ 
+           {program.map((program, index) => (
+             <tr data-index={index}>
+               <td>{program.treniruotes_nr}</td>
+               <td>{program.darbuotojo_vardas}</td>
+               <td>{program.pavadinimas}</td>
+               <td>{program.dalyviu_skaicius}</td>
+               <td>{program.trukme}</td>
+             </tr>
+           ))}
+          </table>
+      :null}
       </main> 
     </div>
   )
 }
-export default Home
+export default programs

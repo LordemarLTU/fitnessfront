@@ -20,7 +20,7 @@ const Home: NextPage = () => {
 
           <ul>
             <li><a href="/">Pagrindinis</a></li>
-            <li><a href="schedules">Tvarkaraščiai</a></li>
+            <li><a href="Schedule">Tvarkaraščiai</a></li>
             <li><a href="programs">Treniruočių programos</a></li>
             <li><a href="contact">Kontaktai</a></li>
             <li><a href="register">Registracija</a></li>
