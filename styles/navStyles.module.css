@@ -1,0 +1,53 @@
+.navigation{
+    width: 100%;
+    background-color: rgb(30, 30, 30);
+    line-height: 450%;
+}
+.navigation h1{
+    float: left;
+    color: white;
+    text-transform: uppercase;
+    font-size: 2em;
+    margin-left: 5%;
+    margin-top: 0%;
+}
+.navigation h1 span{
+    color: crimson;
+}
+.navigation ul{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 5%;
+}
+.navigation ul li{
+    display: inline-block;
+    list-style: none;
+}
+.navigation ul li a{
+    color: white;
+    text-decoration: none;
+    font-size: 1.25em;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 10px;
+    position: relative;
+}
+.navigation ul li a:hover{
+    color: crimson;
+}
+.navigation ul li a::after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: crimson;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+.navigation ul li a:hover::after{
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}

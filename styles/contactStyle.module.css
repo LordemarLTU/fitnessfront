@@ -1,0 +1,35 @@
+.main{
+    margin-top: -1.05%;
+    box-sizing: border-box;
+}
+.Contact p{
+    margin-left: 13.5%;
+}
+.Contact hr{
+    width: 75%;
+    text-align: center;
+}
+.Contact form{
+    margin-top: 2%;
+    margin-left: 15%;
+}
+.Contact form label{
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-left: 10%;
+}
+.Contact form input{
+    margin-left: 10%;
+    width: 60%;
+    font-size: 1em;
+}
+.Contact form button{
+    background-color: seagreen;
+    color: white;
+    width: 60%;
+    height: 50px;
+    margin-left: 10%;
+    margin-top: 3%;
+    font-weight: bold;
+    font-size: 1em;
+}

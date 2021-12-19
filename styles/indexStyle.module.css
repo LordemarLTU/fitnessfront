@@ -1,0 +1,44 @@
+.main{
+    margin-top: -1.1%;
+    box-sizing: border-box;
+}
+.header{
+    margin-top: -40px;
+    background-image: url('../public/images/gym.jpg');
+    background-size: cover;
+    height: 450px;
+}
+.header h1{
+    line-height: 600%;
+    text-align: center;
+    font-size: 4em;
+    text-shadow: 2px 2px white;
+}
+.buttons div{
+    display: flex;
+    justify-content: center;
+}
+.buttons div a{
+    width: 50%;
+    height: 500px;
+}
+.button1{
+    background-image: url('../public/images/tvarkarastis.png');
+    background-size: cover;
+}
+.button1 h1{
+    color: black;
+    text-shadow: 2px 2px white;
+    text-align: center;
+    padding-top: 30%;
+}
+.button2{
+    background-image: url('../public/images/programos.png');
+    background-size: cover;
+}
+.button2 h1{
+    color: black;
+    text-shadow: 2px 2px white;
+    text-align: center;
+    padding-top: 30%;
+}
