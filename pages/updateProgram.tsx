@@ -2,20 +2,20 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import navStyle from '../styles/navStyles.module.css'
-import mainStyle from '../styles/registerStyle.module.css'
+import mainStyle from '../styles/loginStyle.module.css'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import React, {useState} from "react";
 
-export default function Register(){
-  const [fname, setFName] = useState("");
-  const [lname, setLName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+export default function updateSchedule(){
+  const [wName, setWName] = useState("");
+  const [title, setTitle] = useState("");
+  const [participiants, setParticipiants] = useState("");
+  const [duration, setDuration] = useState("");
 
   function validateForm(){
-    return fname.length > 0 && lname.length > 0 &&
-           email.length > 0 && password.length > 0;
+    return wName.length > 0 && title.length > 0 &&
+           participiants.length > 0 && duration.length > 0
   }
 
   function handleSubmit(event: { preventDefault: () => void }){
@@ -38,53 +38,53 @@ export default function Register(){
         </ul>
       </nav>
       
-      <div className={mainStyle.Register}>
-        <h1>Registruotis</h1>
+      <div className={mainStyle.Login}>
+        <h1>Pridėti</h1>
         <p>Užpildykite visus laukus</p>
         <hr></hr>
           <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="fname">
-              <Form.Label>Vardas</Form.Label>
+            <Form.Group controlId="wName">
+              <Form.Label>Darbuotojo pavadinimas</Form.Label>
               <br></br>
               <Form.Control
                 autoFocus
                 type="text"
-                value={fname}
-                placeholder="Įrašykite savo vardą"
-                onChange={(e) => setFName(e.target.value)} />
+                value={wName}
+                placeholder="Įrašykite darbuotoją"
+                onChange={(e) => setWName(e.target.value)} />
             </Form.Group>
             <br></br>
-            <Form.Group controlId="lname">
-              <Form.Label>Pavardė</Form.Label>
+            <Form.Group controlId="title">
+              <Form.Label>Pavadinimas</Form.Label>
               <br></br>
               <Form.Control
                 type="text"
-                value={lname}
-                placeholder="Įrašykite savo pavardę"
-                onChange={(e) => setLName(e.target.value)} />
+                value={title}
+                placeholder="Įrašykite užsimėimo pavadinimą"
+                onChange={(e) => setTitle(e.target.value)} />
             </Form.Group>
             <br></br>
-            <Form.Group controlId="email">
-              <Form.Label>El. paštas</Form.Label>
+            <Form.Group controlId="participiants">
+              <Form.Label>Dalyvių skaičius</Form.Label>
               <br></br>
               <Form.Control
-                type="email"
-                value={email}
-                placeholder="Įrašykite savo el. paštą"
-                onChange={(e) => setEmail(e.target.value)} />
+                type="number"
+                value={participiants}
+                placeholder="Įrašykite užsiėmimo tipą"
+                onChange={(e) => setParticipiants(e.target.value)} />
             </Form.Group>
             <br></br>
-            <Form.Group controlId="password">
-              <Form.Label>Slaptažodis</Form.Label>
+            <Form.Group controlId="duration">
+              <Form.Label>Trukmė</Form.Label>
               <br></br>
               <Form.Control
-                type="password"
-                value={password}
-                placeholder="Įrašykite slaptažodį"
-                onChange={(e) => setPassword(e.target.value)} />
+                type="number"
+                value={duration}
+                placeholder="Įrašykite užsiėmimo trukmę"
+                onChange={(e) => setDuration(e.target.value)} />
             </Form.Group>
             <Button type="submit" disabled={!validateForm()}>
-              Registruotis
+              Saugoti
             </Button>
           </Form>
       </div>

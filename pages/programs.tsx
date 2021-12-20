@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import { IProgram } from '../interface/IProgram'
 import navStyle from '../styles/navStyles.module.css'
 import mainStyle from '../styles/programsStyle.module.css'
-const programs: NextPage = () => {
+const Programs = () => {
   const [program, setProgram] = useState<Array<IProgram>>([])
 
   const restApi = "http://127.0.0.1:8000/api"
@@ -17,23 +17,11 @@ const programs: NextPage = () => {
   }
 
   const postProgram = async () => {
-    await
-      axios.post(`${restApi}/treniruotes_programa`, {
-        "darbuotojo_vardas": 'dVardas',
-        "pavadinimas": 'pavadinimas',
-        "dalyviu_skaicius":20,
-        "trukme":90,
-      }).then(function (response) {
-        console.log(response);
-      })
-        .catch(function (error) {
-          console.log(error);
-        });
-
-    window.location.href = 'programs'
+    window.location.href = 'addProgram'
   }
 
   
+
   useEffect(() => {
     getProgram();
   }, []);
@@ -86,6 +74,16 @@ const programs: NextPage = () => {
                <td>{program.pavadinimas}</td>
                <td>{program.dalyviu_skaicius}</td>
                <td>{program.trukme}</td>
+               <td>
+                 <button>
+                   Šalinti
+                 </button>
+               </td>
+               <td>
+                 <button>
+                   Redaguoti
+                 </button>
+               </td>
              </tr>
            ))}
           </table>
@@ -94,4 +92,4 @@ const programs: NextPage = () => {
     </div>
   )
 }
-export default programs
+export default Programs

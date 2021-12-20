@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import { ISchedule } from '../interface/ISchedule'
 import navStyle from '../styles/navStyles.module.css'
 import mainStyle from '../styles/scheduleStyle.module.css'
-const Schedule: NextPage = () => {
+const Schedule = () => {
   const [schedule, setSchedule] = useState<Array<ISchedule>>([])
 
   const restApi = "http://127.0.0.1:8000/api"
@@ -17,7 +17,7 @@ const Schedule: NextPage = () => {
   }
 
   const postSchedule = async () => {
-    await
+    /*await
       axios.post(`${restApi}/tvarkarastis`, {
         "sale_treniravimosi": 'sale',
         "laikas": '2021-12-01 21:12:30',
@@ -27,11 +27,15 @@ const Schedule: NextPage = () => {
       })
         .catch(function (error) {
           console.log(error);
-        });
+        });*/
 
-    window.location.href = 'programs'
+    window.location.href = 'addSchedule'
   }
 
+  function updateSchedule(id: number)
+  {
+    window.location.href = `updateSchedule?ID=${id}`;
+  }
   
   useEffect(() => {
     getSchedule();
@@ -55,7 +59,7 @@ const Schedule: NextPage = () => {
           <ul>
             <li><a href="/">Pagrindinis</a></li>
             <li><a href="">Tvarkaraščiai</a></li>
-            <li><a href="programs">Treniruočių programos</a></li>
+            <li><a href="Programs">Treniruočių programos</a></li>
             <li><a href="contact">Kontaktai</a></li>
             <li><a href="register">Registracija</a></li>
             <li><a href="login">Prisijungti</a></li>
@@ -81,6 +85,16 @@ const Schedule: NextPage = () => {
                <td>{schedule.sale_treniravimosi}</td>
                <td>{schedule.laikas}</td>
                <td>{schedule.uzsiemimo_tipas}</td>
+               <td>
+                 <button>
+                   Šalinti
+                 </button>
+               </td>
+               <td>
+                 <button onClick={() => updateSchedule(schedule.sales_nr)}>
+                   Redaguoti
+                 </button>
+               </td>
              </tr>
            ))}
  
