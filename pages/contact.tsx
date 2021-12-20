@@ -7,19 +7,53 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Select from 'react-select';
 import React, {useState} from "react";
+import { IMessage } from '../interface/IMessage'
+import axios from 'axios'
 
 export default function Message(){
   const [subject, setSubject] = useState("");
-  const [message, setMessage] = useState("");
-  const [trainer, setTrainer] = useState("");
+  const [text, setText] = useState("");
+  const [trainerFirst, setTrainerFirst] = useState("");
+  const [trainerLast, setTrainerLast] = useState("");
 
   function validateForm(){
-    return subject.length > 0 && message.length > 0;
+    return subject.length > 0 && text.length > 0 &&
+           trainerFirst.length > 0 && trainerLast.length > 0;
   }
 
   function handleSubmit(event: { preventDefault: () => void }){
     event.preventDefault();
   }
+
+  const [message, setMessage] = useState<Array<IMessage>>([])
+
+  const restApi = "http://127.0.0.1:8000/api"
+
+  const getMessage = async () => {
+    let message: Array<IMessage> = await fetch(restApi+'/zinute').then(r => r.json())
+    getMessage(message)
+  }
+
+  const postMessage = async () => {
+    await
+      axios.post(`${restApi}/zinute`, {
+        "sale_treniravimosi": hall,
+        "laikas": time,
+        "uzsiemimo_tipas":type,
+      }).then(function (response) {
+        console.log(response);
+      })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+    window.location.href = 'Schedule'
+  }
+
+  useEffect(() => {
+    getSchedule();
+  }, []);
+
 
   return (
     <main className={mainStyle.main}>

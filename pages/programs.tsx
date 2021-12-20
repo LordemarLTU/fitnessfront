@@ -20,7 +20,16 @@ const Programs = () => {
     window.location.href = 'addProgram'
   }
 
-  
+  async function deleteSchedule(id: number)
+  {
+    debugger
+    await axios.delete(`${restApi}/treniruotes_programa/${id}`).then(function (response) {
+      console.log(response);
+    })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 
   useEffect(() => {
     getProgram();
