@@ -27,13 +27,13 @@ const workers = () => {
 
   async function deleteWorker(id: number)
   {
-    debugger
     await axios.delete(`${restApi}/darbuotojas/${id}`).then(function (response) {
       console.log(response);
     })
       .catch(function (error) {
         console.log(error);
       });
+    window.location.href='workers'
   }
   
   useEffect(() => {
@@ -85,7 +85,7 @@ const workers = () => {
 
            {worker.map((worker, index) => (
              <tr data-index={index}>
-               <td>{worker.darbuotojo_nr}</td>
+               <td>{worker.id}</td>
                <td>{worker.asmens_kodas}</td>
                <td>{worker.vardas}</td>
                <td>{worker.pavarde}</td>
@@ -93,12 +93,12 @@ const workers = () => {
                <td>{worker.el_pastas}</td>
                <td>{worker.darbo_etatas}</td>
                <td>
-                 <button onClick={() => deleteWorker(worker.darbuotojo_nr)}>
+                 <button onClick={() => deleteWorker(worker.id)}>
                    Šalinti
                  </button>
                </td>
                <td>
-                 <button onClick={() => updateWorker(worker.darbuotojo_nr)}>
+                 <button onClick={() => updateWorker(worker.id)}>
                    Redaguoti
                  </button>
                </td>

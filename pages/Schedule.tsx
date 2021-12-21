@@ -65,7 +65,7 @@ const Schedule = () => {
           </ul>
         </nav>
         
-        <h1>Tvarkaraščiai</h1>
+        <h1 style={{textAlign: "center"}}>Tvarkaraščiai</h1>
 
         <button onClick={postSchedule}>
           Pridėti

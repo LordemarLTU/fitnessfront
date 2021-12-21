@@ -21,13 +21,13 @@ export default function updateSchedule(){
     event.preventDefault();
   }
 
-  const [program, setProgram] = useState<Array<ISchedule>>([])
+  const [updateSchedule, setUpdateSchedule] = useState<Array<ISchedule>>([])
   const [id, setId] = useState<string | null>('');
   const restApi = "http://127.0.0.1:8000/api"
 
-  const getProgram = async () => {
-    let program: Array<ISchedule> = await fetch(restApi+'/treniruotes_programa').then(r => r.json())
-    setProgram(program)
+  const getUpdateSchedule = async () => {
+    let updateSchedule: Array<ISchedule> = await fetch(restApi+'/tvarkarastis').then(r => r.json())
+    setUpdateSchedule(updateSchedule)
   }
 
 
@@ -37,23 +37,24 @@ export default function updateSchedule(){
     setId(id)
   }
 
-  const putSchedule = async () => {
-    await
-      axios.put(`${restApi}/treniruotes_programa/${id}`, {
+  async function putUpdateSchedule()
+  { 
+    await axios.put(`${restApi}/tvarkarastis/${id}`, {
         "sale_treniravimosi": hall,
         "laikas": time,
         "uzsiemimo_tipas": type,
       }).then(function (response) {
-        console.log(response);
+      console.log(response);
       })
-        .catch(function (error) {
-          console.log(error);
-        });
+      .catch(function (error) {
+        console.log(error);
+      });
+    
     window.location.href = 'Schedule'
   }
 
   useEffect(() => {
-    getProgram();
+    getUpdateSchedule();
   }, []);
 
   return (
@@ -107,7 +108,7 @@ export default function updateSchedule(){
                 placeholder="Įrašykite užsiėmimo tipą"
                 onChange={(e) => setTime(e.target.value)} />
             </Form.Group>
-            <Button onClick={putSchedule}>
+            <Button onClick={() => putUpdateSchedule}>
               Saugoti
             </Button>
           </Form>
