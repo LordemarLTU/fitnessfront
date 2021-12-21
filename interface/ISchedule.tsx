@@ -1,5 +1,5 @@
 export interface ISchedule {
-    sales_nr: number
+    id: number
     sale_treniravimosi:string
     laikas:string
     uzsiemimo_tipas: string;

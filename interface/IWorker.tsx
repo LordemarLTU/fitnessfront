@@ -1,5 +1,5 @@
 export interface IWorker {
-    darbuotojo_nr: number
+    id: number
     asmens_kodas: string
     vardas: string
     pavarde:string

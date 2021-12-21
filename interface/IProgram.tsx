@@ -1,5 +1,5 @@
 export interface IProgram {
-    treniruotes_nr: number
+    id: number
     darbuotojo_vardas:string
     pavadinimas:string
     dalyviu_skaicius: number

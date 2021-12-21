@@ -44,7 +44,7 @@ export default function updateSchedule(){
         <hr></hr>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="wName">
-              <Form.Label>Darbuotojo pavadinimas</Form.Label>
+              <Form.Label>Darbuotojo vardas</Form.Label>
               <br></br>
               <Form.Control
                 autoFocus

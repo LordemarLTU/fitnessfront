@@ -65,6 +65,8 @@ const workers = () => {
           </ul>
         </nav>
         
+        <h1>Darbuotojai</h1>
+
         <button onClick={postWorker}>
           Pridėti
         </button>
@@ -80,7 +82,7 @@ const workers = () => {
                <th>El. paštas</th>
                <th>Darbo etatas</th>
            </tr>
- 
+
            {worker.map((worker, index) => (
              <tr data-index={index}>
                <td>{worker.darbuotojo_nr}</td>

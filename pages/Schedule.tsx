@@ -17,18 +17,6 @@ const Schedule = () => {
   }
 
   const postSchedule = async () => {
-    /*await
-      axios.post(`${restApi}/tvarkarastis`, {
-        "sale_treniravimosi": 'sale',
-        "laikas": '2021-12-01 21:12:30',
-        "uzsiemimo_tipas":"uzsiemimas",
-      }).then(function (response) {
-        console.log(response);
-      })
-        .catch(function (error) {
-          console.log(error);
-        });*/
-
     window.location.href = 'addSchedule'
   }
 
@@ -39,13 +27,13 @@ const Schedule = () => {
 
   async function deleteSchedule(id: number)
   {
-    debugger
     await axios.delete(`${restApi}/tvarkarastis/${id}`).then(function (response) {
       console.log(response);
     })
       .catch(function (error) {
         console.log(error);
       });
+    window.location.href = 'Schedule'
   }
   
   useEffect(() => {
@@ -77,6 +65,8 @@ const Schedule = () => {
           </ul>
         </nav>
         
+        <h1>Tvarkaraščiai</h1>
+
         <button onClick={postSchedule}>
           Pridėti
         </button>
@@ -92,17 +82,17 @@ const Schedule = () => {
  
            {schedule.map((schedule, index) => (
              <tr data-index={index}>
-               <td>{schedule.sales_nr}</td>
+               <td>{schedule.id}</td>
                <td>{schedule.sale_treniravimosi}</td>
                <td>{schedule.laikas}</td>
                <td>{schedule.uzsiemimo_tipas}</td>
                <td>
-                 <button onClick={() => deleteSchedule(schedule.sales_nr)}>
+                 <button onClick={() => deleteSchedule(schedule.id)}>
                    Šalinti
                  </button>
                </td>
                <td>
-                 <button onClick={() => updateSchedule(schedule.sales_nr)}>
+                 <button onClick={() => updateSchedule(schedule.id)}>
                    Redaguoti
                  </button>
                </td>

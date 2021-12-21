@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import { IProgram } from '../interface/IProgram'
 import navStyle from '../styles/navStyles.module.css'
 import mainStyle from '../styles/programsStyle.module.css'
+import tableStyle from '../styles/tableStyle.module.css'
 const Programs = () => {
   const [program, setProgram] = useState<Array<IProgram>>([])
 
@@ -20,7 +21,12 @@ const Programs = () => {
     window.location.href = 'addProgram'
   }
 
-  async function deleteSchedule(id: number)
+  function updateProgram()
+  {
+    window.location.href = `updateProgram`;
+  }
+
+  async function deleteProgram(id: number)
   {
     debugger
     await axios.delete(`${restApi}/treniruotes_programa/${id}`).then(function (response) {
@@ -29,6 +35,7 @@ const Programs = () => {
       .catch(function (error) {
         console.log(error);
       });
+      window.location.href='Programs';
   }
 
   useEffect(() => {
@@ -67,7 +74,7 @@ const Programs = () => {
         </button>
         
         {program !== undefined? 
-          <table className="table table-bordered">
+          <table className={tableStyle.table}>
            <tr>
                <th>Nr</th>
                <th>Darbuotojas</th>
@@ -78,18 +85,18 @@ const Programs = () => {
  
            {program.map((program, index) => (
              <tr data-index={index}>
-               <td>{program.treniruotes_nr}</td>
+               <td>{program.id}</td>
                <td>{program.darbuotojo_vardas}</td>
                <td>{program.pavadinimas}</td>
                <td>{program.dalyviu_skaicius}</td>
                <td>{program.trukme}</td>
                <td>
-                 <button>
+                 <button onClick={() => deleteProgram(program.id)}>
                    Šalinti
                  </button>
                </td>
                <td>
-                 <button>
+                 <button onClick={updateProgram}>
                    Redaguoti
                  </button>
                </td>

@@ -6,7 +6,7 @@ import mainStyle from '../styles/contactStyle.module.css'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Select from 'react-select';
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { IMessage } from '../interface/IMessage'
 import axios from 'axios'
 
@@ -37,9 +37,10 @@ export default function Message(){
   const postMessage = async () => {
     await
       axios.post(`${restApi}/zinute`, {
-        "sale_treniravimosi": hall,
-        "laikas": time,
-        "uzsiemimo_tipas":type,
+        "tekstas": text,
+        "tema": subject,
+        "gavejo_vardas":trainerFirst,
+        "gavejo_pavarde": trainerLast,
       }).then(function (response) {
         console.log(response);
       })
@@ -51,7 +52,7 @@ export default function Message(){
   }
 
   useEffect(() => {
-    getSchedule();
+    getMessage();
   }, []);
 
 
@@ -87,25 +88,33 @@ export default function Message(){
                 onChange={(e) => setSubject(e.target.value)} />
             </Form.Group>
             <br></br>
-            <Form.Group controlId="message">
+            <Form.Group controlId="text">
               <Form.Label>Žinutė</Form.Label>
               <br></br>
               <Form.Control
                 type="textarea"
-                value={message}
+                value={text}
                 placeholder="Įrašykite žinutės tekstą"
-                onChange={(e) => setMessage(e.target.value)} />
+                onChange={(e) => setText(e.target.value)} />
             </Form.Group>
             <br></br>
-            <Form.Group controlId="trainer">
-              <Form.Label>Treneris</Form.Label>
+            <Form.Group controlId="trainerFirst">
+              <Form.Label>Trenerio vardas</Form.Label>
               <br></br>
               <Form.Control
                 type="textarea"
-                value={trainer}
-                onChange={(e) => setTrainer(e.target.value)} />
+                value={trainerFirst}
+                onChange={(e) => setTrainerFirst(e.target.value)} />
             </Form.Group>
-            <Button type="submit" disabled={!validateForm()}>
+            <Form.Group controlId="trainerLast">
+              <Form.Label>Trenerio pavarde</Form.Label>
+              <br></br>
+              <Form.Control
+                type="textarea"
+                value={trainerLast}
+                onChange={(e) => setTrainerLast(e.target.value)} />
+            </Form.Group>
+            <Button onClick={postMessage}>
               Siųsti
             </Button>
           </Form>
