@@ -5,7 +5,9 @@ import navStyle from '../styles/navStyles.module.css'
 import mainStyle from '../styles/loginStyle.module.css'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
+import { IWorker } from '../interface/IWorker'
+import axios from 'axios'
 
 export default function updateWorker(){
   const [personalCode, setPersonalCode] = useState("");
@@ -23,6 +25,37 @@ export default function updateWorker(){
 
   function handleSubmit(event: { preventDefault: () => void }){
     event.preventDefault();
+  }
+
+  const [updateWorker, setUpdateWorker] = useState<Array<IWorker>>([])
+  const [id, setId] = useState<string | null>('');
+  const restApi = "http://127.0.0.1:8000/api"
+
+  if(typeof window != "undefined")
+  {
+    useEffect(() => {
+      const queryParams = new URLSearchParams(window.location.search);
+      const id = queryParams.get('ID');
+      setId(id)
+    }, []);
+  }
+
+  async function putUpdateWorker()
+  { 
+    await axios.put(`${restApi}/darbuotojas/${id}`, {
+        "asmens_kodas": personalCode,
+        "vardas": fname,
+        "pavarde": lname,
+        "slaptazodis": password,
+        "el_pastas": email,
+        "darbo_etatas": workTime,
+      }).then(function (response) {
+      console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    window.location.href = 'workers'
   }
 
   return (
@@ -104,7 +137,7 @@ export default function updateWorker(){
                 placeholder="Įrašykite darbuotojo darbo etatą"
                 onChange={(e) => setWorkTime(e.target.value)} />
             </Form.Group>
-            <Button type="submit" disabled={!validateForm()}>
+            <Button onClick={() => putUpdateWorker()}>
               Saugoti
             </Button>
           </Form>

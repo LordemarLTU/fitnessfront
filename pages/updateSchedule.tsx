@@ -25,16 +25,13 @@ export default function updateSchedule(){
   const [id, setId] = useState<string | null>('');
   const restApi = "http://127.0.0.1:8000/api"
 
-  const getUpdateSchedule = async () => {
-    let updateSchedule: Array<ISchedule> = await fetch(restApi+'/tvarkarastis').then(r => r.json())
-    setUpdateSchedule(updateSchedule)
-  }
-
-
-  if (typeof window !== "undefined") {
-    const queryParams = new URLSearchParams(window.location.search);
-    const id = queryParams.get('ID');
-    setId(id)
+  if(typeof window != "undefined")
+  {
+    useEffect(() => {
+      const queryParams = new URLSearchParams(window.location.search);
+      const id = queryParams.get('ID');
+      setId(id)
+    }, []);
   }
 
   async function putUpdateSchedule()
@@ -49,13 +46,10 @@ export default function updateSchedule(){
       .catch(function (error) {
         console.log(error);
       });
-    
     window.location.href = 'Schedule'
   }
 
-  useEffect(() => {
-    getUpdateSchedule();
-  }, []);
+  
 
   return (
     <main className={mainStyle.main}>
@@ -106,9 +100,9 @@ export default function updateSchedule(){
                 type="text"
                 value={type}
                 placeholder="Įrašykite užsiėmimo tipą"
-                onChange={(e) => setTime(e.target.value)} />
+                onChange={(e) => setType(e.target.value)} />
             </Form.Group>
-            <Button onClick={() => putUpdateSchedule}>
+            <Button onClick={() => putUpdateSchedule()}>
               Saugoti
             </Button>
           </Form>

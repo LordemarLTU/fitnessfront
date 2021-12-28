@@ -21,9 +21,9 @@ const Programs = () => {
     window.location.href = 'addProgram'
   }
 
-  function updateProgram()
+  function updateProgram(id : number)
   {
-    window.location.href = `updateProgram`;
+    window.location.href = `updateProgram?ID=${id}`;
   }
 
   async function deleteProgram(id: number)
@@ -96,7 +96,7 @@ const Programs = () => {
                  </button>
                </td>
                <td>
-                 <button onClick={updateProgram}>
+                 <button onClick={() => updateProgram(program.id)}>
                    Redaguoti
                  </button>
                </td>

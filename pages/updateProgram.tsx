@@ -5,7 +5,9 @@ import navStyle from '../styles/navStyles.module.css'
 import mainStyle from '../styles/loginStyle.module.css'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
+import { IProgram } from '../interface/IProgram'
+import axios from 'axios'
 
 export default function updateSchedule(){
   const [wName, setWName] = useState("");
@@ -20,6 +22,35 @@ export default function updateSchedule(){
 
   function handleSubmit(event: { preventDefault: () => void }){
     event.preventDefault();
+  }
+
+  const [updateProgram, setUpdateProgram] = useState<Array<IProgram>>([])
+  const [id, setId] = useState<string | null>('');
+  const restApi = "http://127.0.0.1:8000/api"
+
+  if(typeof window != "undefined")
+  {
+    useEffect(() => {
+      const queryParams = new URLSearchParams(window.location.search);
+      const id = queryParams.get('ID');
+      setId(id)
+    }, []);
+  }
+
+  async function putUpdateProgram()
+  { 
+    await axios.put(`${restApi}/treniruotes_programa/${id}`, {
+        "darbuotojo_vardas": wName,
+        "pavadinimas": title,
+        "dalyviu_skaicius": participiants,
+        "trukme": duration,
+      }).then(function (response) {
+      console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    window.location.href = 'Programs'
   }
 
   return (
@@ -83,7 +114,7 @@ export default function updateSchedule(){
                 placeholder="Įrašykite užsiėmimo trukmę"
                 onChange={(e) => setDuration(e.target.value)} />
             </Form.Group>
-            <Button type="submit" disabled={!validateForm()}>
+            <Button  onClick={() => putUpdateProgram()}>
               Saugoti
             </Button>
           </Form>
