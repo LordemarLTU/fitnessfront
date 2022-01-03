@@ -21,7 +21,7 @@ export default function updateSchedule(){
   }
 
   function handleSubmit(event: { preventDefault: () => void }){
-    event.preventDefault();
+    event.preventDefault(); 
   }
 
   const [updateProgram, setUpdateProgram] = useState<Array<IProgram>>([])

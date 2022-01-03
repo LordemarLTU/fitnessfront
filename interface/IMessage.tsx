@@ -4,4 +4,4 @@ export interface IMessage {
     tema:string
     gavejo_vardas: string
     gavejo_pavarde: string;
- }
+ } 

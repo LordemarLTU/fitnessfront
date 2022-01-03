@@ -17,7 +17,7 @@ export default function Login(){
 
   function handleSubmit(event: { preventDefault: () => void }){
     event.preventDefault();
-  }
+  } 
 
   return (
     <main className={mainStyle.main}>

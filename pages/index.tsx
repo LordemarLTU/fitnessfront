@@ -15,7 +15,7 @@ const Home: NextPage = () => {
 
         <nav className={navStyle.navigation}>
           <div>
-            <h1>Fit<span>ness</span></h1>
+            <h1>Fit<span>ness</span></h1> 
           </div>
 
           <ul>

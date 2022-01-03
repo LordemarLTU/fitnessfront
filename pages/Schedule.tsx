@@ -21,7 +21,7 @@ const Schedule = () => {
   }
 
   function updateSchedule(id: number)
-  {
+  { 
     window.location.href = `updateSchedule?ID=${id}`;
   }
 

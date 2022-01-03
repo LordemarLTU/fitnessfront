@@ -10,7 +10,7 @@ import axios from 'axios'
 import { IProgram } from '../interface/IProgram'
 
 export default function AddSchedule(){
-  const [wName, setWName] = useState("");
+  const [wName, setWName] = useState(""); 
   const [title, setTitle] = useState("");
   const [participiants, setParticipiants] = useState("");
   const [duration, setDuration] = useState("");

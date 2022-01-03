@@ -12,7 +12,7 @@ import { IWorker } from '../interface/IWorker'
 export default function AddWorker(){
   const [personCode, setPersonCode] = useState("");
   const [fname, setFName] = useState("");
-  const [lname, setLName] = useState("");
+  const [lname, setLName] = useState(""); 
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [workTime, setWorkTime] = useState("");

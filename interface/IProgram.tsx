@@ -4,4 +4,4 @@ export interface IProgram {
     pavadinimas:string
     dalyviu_skaicius: number
     trukme: number;
- }
+ } 

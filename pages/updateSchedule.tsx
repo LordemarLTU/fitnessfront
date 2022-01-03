@@ -23,7 +23,7 @@ export default function updateSchedule(){
 
   const [updateSchedule, setUpdateSchedule] = useState<Array<ISchedule>>([])
   const [id, setId] = useState<string | null>('');
-  const restApi = "http://127.0.0.1:8000/api"
+  const restApi = "http://127.0.0.1:8000/api" 
 
   if(typeof window != "undefined")
   {

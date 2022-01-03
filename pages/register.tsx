@@ -19,7 +19,7 @@ export default function Register(){
   }
 
   function handleSubmit(event: { preventDefault: () => void }){
-    event.preventDefault();
+    event.preventDefault(); 
   }
 
   return (
