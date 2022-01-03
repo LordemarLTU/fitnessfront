@@ -137,7 +137,7 @@ export default function updateWorker(){
                 placeholder="Įrašykite darbuotojo darbo etatą"
                 onChange={(e) => setWorkTime(e.target.value)} />
             </Form.Group>
-            <Button onClick={() => putUpdateWorker()}>
+            <Button onClick={() => putUpdateWorker()}> 
               Saugoti
             </Button>
           </Form>
