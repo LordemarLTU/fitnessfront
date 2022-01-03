@@ -17,7 +17,7 @@ const Programs = () => {
     setProgram(program)
   }
 
-  const postProgram = async () => {
+  const postProgram = async () => {        
     window.location.href = 'addProgram'
   }
 
