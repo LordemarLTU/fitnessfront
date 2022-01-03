@@ -6,4 +6,4 @@ export interface IWorker {
     slaptazodis:string
     el_pastas: string;
     darbo_etatas : number
- }
+ } 

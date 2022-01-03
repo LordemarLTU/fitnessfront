@@ -11,7 +11,7 @@ import axios from 'axios'
 
 export default function AddSchedule(){
   const [hall, setHall] = useState("");
-  const [time, setTime] = useState("");
+  const [time, setTime] = useState(""); 
   const [type, setType] = useState("");
 
   function validateForm(){

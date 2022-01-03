@@ -30,7 +30,7 @@ const workers = () => {
     await axios.delete(`${restApi}/darbuotojas/${id}`).then(function (response) {
       console.log(response);
     })
-      .catch(function (error) {
+      .catch(function (error) { 
         console.log(error);
       });
     window.location.href='workers'

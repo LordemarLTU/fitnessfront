@@ -102,7 +102,7 @@ const Programs = () => {
                </td>
              </tr>
            ))}
-          </table>
+          </table> 
       :null}
       </main> 
     </div>

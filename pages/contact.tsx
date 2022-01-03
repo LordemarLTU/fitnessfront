@@ -13,7 +13,7 @@ import axios from 'axios'
 export default function Message(){
   const [subject, setSubject] = useState("");
   const [text, setText] = useState("");
-  const [trainerFirst, setTrainerFirst] = useState("");
+  const [trainerFirst, setTrainerFirst] = useState(""); 
   const [trainerLast, setTrainerLast] = useState("");
 
   function validateForm(){
@@ -31,7 +31,7 @@ export default function Message(){
 
   const getMessage = async () => {
     let message: Array<IMessage> = await fetch(restApi+'/zinute').then(r => r.json())
-    getMessage(message)
+    getMessage(message) 
   }
 
   const postMessage = async () => {
